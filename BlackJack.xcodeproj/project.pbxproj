@@ -14,6 +14,8 @@
 		B02FA3C419A44359005B0FC9 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B02FA3C219A44359005B0FC9 /* Card.cpp */; };
 		B02FA3C719A44369005B0FC9 /* Hand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B02FA3C519A44369005B0FC9 /* Hand.cpp */; };
 		B02FA3CA19A44375005B0FC9 /* Deck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B02FA3C819A44375005B0FC9 /* Deck.cpp */; };
+		B0C9DB5419A83EE600800572 /* Dealer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0C9DB5219A83EE600800572 /* Dealer.cpp */; };
+		B0C9DB5819A83EFB00800572 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0C9DB5619A83EFB00800572 /* Player.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +43,10 @@
 		B02FA3C619A44369005B0FC9 /* Hand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hand.h; sourceTree = "<group>"; };
 		B02FA3C819A44375005B0FC9 /* Deck.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Deck.cpp; sourceTree = "<group>"; };
 		B02FA3C919A44375005B0FC9 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
+		B0C9DB5219A83EE600800572 /* Dealer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dealer.cpp; sourceTree = "<group>"; };
+		B0C9DB5319A83EE600800572 /* Dealer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dealer.h; sourceTree = "<group>"; };
+		B0C9DB5619A83EFB00800572 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		B0C9DB5719A83EFB00800572 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,8 @@
 				B02FA3CC19A44385005B0FC9 /* Hand */,
 				B02FA3CD19A4438C005B0FC9 /* Deck */,
 				B02FA3B719A44329005B0FC9 /* BlackJack.1 */,
+				B0C9DB5519A83EEC00800572 /* Dealer */,
+				B0C9DB5919A83F0000800572 /* Player */,
 			);
 			path = BlackJack;
 			sourceTree = "<group>";
@@ -111,6 +119,24 @@
 				B02FA3C919A44375005B0FC9 /* Deck.h */,
 			);
 			name = Deck;
+			sourceTree = "<group>";
+		};
+		B0C9DB5519A83EEC00800572 /* Dealer */ = {
+			isa = PBXGroup;
+			children = (
+				B0C9DB5219A83EE600800572 /* Dealer.cpp */,
+				B0C9DB5319A83EE600800572 /* Dealer.h */,
+			);
+			name = Dealer;
+			sourceTree = "<group>";
+		};
+		B0C9DB5919A83F0000800572 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				B0C9DB5619A83EFB00800572 /* Player.cpp */,
+				B0C9DB5719A83EFB00800572 /* Player.h */,
+			);
+			name = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +192,8 @@
 			files = (
 				B02FA3CA19A44375005B0FC9 /* Deck.cpp in Sources */,
 				B02FA3C719A44369005B0FC9 /* Hand.cpp in Sources */,
+				B0C9DB5819A83EFB00800572 /* Player.cpp in Sources */,
+				B0C9DB5419A83EE600800572 /* Dealer.cpp in Sources */,
 				B02FA3B619A44329005B0FC9 /* main.cpp in Sources */,
 				B02FA3C419A44359005B0FC9 /* Card.cpp in Sources */,
 			);
@@ -277,6 +305,7 @@
 				B02FA3BD19A44329005B0FC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

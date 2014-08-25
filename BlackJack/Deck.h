@@ -11,8 +11,10 @@
 
 #include <iostream>
 #include <string.h>
-using namespace std;
+#include <vector>
+#include <list>
 #include "Card.h"
+using namespace std;
 
 class Deck
 {
@@ -30,6 +32,7 @@ class Deck
     
     private:
         // Atributos
+        vector <Card> _deck;
         Card d[52]=
         {
             Card('C','A'), Card('C','2'), Card('C','3'), Card('C','4'), Card('C','5'),

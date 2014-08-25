@@ -65,3 +65,6 @@ void Card::draw(int x, int y)
     dibujaPoligono(x, x+50, y, y+100);
     
 }
+
+
+

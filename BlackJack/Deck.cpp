@@ -10,37 +10,100 @@
 
 Deck::Deck()
 {
+    _deck.push_back(Card('C','A'));
+    _deck.push_back(Card('C','2'));
+    _deck.push_back(Card('C','3'));
+    _deck.push_back(Card('C','4'));
+    _deck.push_back(Card('C','5'));
+    _deck.push_back(Card('C','6'));
+    _deck.push_back(Card('C','7'));
+    _deck.push_back(Card('C','8'));
+    _deck.push_back(Card('C','9'));
+    _deck.push_back(Card('C','T'));
+    _deck.push_back(Card('C','J'));
+    _deck.push_back(Card('C','Q'));
+    _deck.push_back(Card('C','K'));
+    
+    _deck.push_back(Card('S','A'));
+    _deck.push_back(Card('S','2'));
+    _deck.push_back(Card('S','3'));
+    _deck.push_back(Card('S','4'));
+    _deck.push_back(Card('S','5'));
+    _deck.push_back(Card('S','6'));
+    _deck.push_back(Card('S','7'));
+    _deck.push_back(Card('S','8'));
+    _deck.push_back(Card('S','9'));
+    _deck.push_back(Card('S','T'));
+    _deck.push_back(Card('S','J'));
+    _deck.push_back(Card('S','Q'));
+    _deck.push_back(Card('S','K'));
+    
+    _deck.push_back(Card('H','A'));
+    _deck.push_back(Card('H','2'));
+    _deck.push_back(Card('H','3'));
+    _deck.push_back(Card('H','4'));
+    _deck.push_back(Card('H','5'));
+    _deck.push_back(Card('H','6'));
+    _deck.push_back(Card('H','7'));
+    _deck.push_back(Card('H','8'));
+    _deck.push_back(Card('H','9'));
+    _deck.push_back(Card('H','T'));
+    _deck.push_back(Card('H','J'));
+    _deck.push_back(Card('H','Q'));
+    _deck.push_back(Card('H','K'));
+    
+    _deck.push_back(Card('D','A'));
+    _deck.push_back(Card('D','2'));
+    _deck.push_back(Card('D','3'));
+    _deck.push_back(Card('D','4'));
+    _deck.push_back(Card('D','5'));
+    _deck.push_back(Card('D','6'));
+    _deck.push_back(Card('D','7'));
+    _deck.push_back(Card('D','8'));
+    _deck.push_back(Card('D','9'));
+    _deck.push_back(Card('D','T'));
+    _deck.push_back(Card('D','J'));
+    _deck.push_back(Card('D','Q'));
+    _deck.push_back(Card('D','K'));
 
 }
 
 char Deck::getSuit(int k)
 {
-    return 'a';
+    return _deck[k].getSuit();
 }
 
 char Deck::getValue(int k)
 {
-
+    return _deck[k].getValue();
 }
 
 void Deck::shuffle()
 {
+    srand (time(NULL) );
+    
     for(int i = 0; i < 52; i++)
     {
         int j = rand()% 52;
-        Card tmp = d[i];
-        d[i] = d[j];
-        d[j] = tmp;
+        Card tmp = _deck[i];
+        _deck[i] = _deck[j];
+        _deck[j] = tmp;
     }
+
 }
 
 Card Deck::dealCard()
 {
-
+    Card& dealCard = _deck.front();
+    _deck.erase(_deck.begin());
+    return dealCard;
 }
 
-char * Deck::str()
+/*char * Deck::str()
 {
 
-}
+}*/
+
+
+
 
