@@ -94,9 +94,9 @@ void Deck::shuffle()
 
 Card Deck::dealCard()
 {
-    Card& dealCard = _deck.front();
+    Card dealed = _deck.front();
     _deck.erase(_deck.begin());
-    return dealCard;
+    return dealed;
 }
 
 /*char * Deck::str()
