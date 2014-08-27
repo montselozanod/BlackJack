@@ -11,6 +11,7 @@
 
 
 #include <iostream>
+#include <vector>
 #include "Card.h"
 
 class Hand
@@ -20,7 +21,8 @@ class Hand
     
         char getSuit(int k); //Retorna el suit de la carta
         char getValue(int k);//retorna el valor de la carta k de
-        char * str(); //retorna en todas las cartas de la mano
+        char * strm(); //retorna en todas las cartas de la mano
+        void str();
         void addCard(Card card); //añade una carta a la mano de cartas
         int getValue();//retorna el valor total de puntos de la mano
         void draw(int x, int y);//dibuja todas las cartas desde la posición x,y, dependiendo de la cantidad de cartas
@@ -34,6 +36,8 @@ class Hand
             Card('z','z'),Card('z','z'),
             Card('z','z'), Card('z','z')
         };
+        int valorAs(int value);
+    
         int cont=0;  //cantidad de cartas de la mano
 };
 

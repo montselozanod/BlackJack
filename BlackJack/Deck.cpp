@@ -6,10 +6,13 @@
 //  Copyright (c) 2014 Montserrat Lozano Dieck. All rights reserved.
 //
 
+#include <string.h>
 #include "Deck.h"
 
 Deck::Deck()
 {
+    cont = 52;
+    
     _deck.push_back(Card('C','A'));
     _deck.push_back(Card('C','2'));
     _deck.push_back(Card('C','3'));
@@ -96,13 +99,33 @@ Card Deck::dealCard()
 {
     Card dealed = _deck.front();
     _deck.erase(_deck.begin());
+    cont--;
     return dealed;
 }
 
-/*char * Deck::str()
+char * Deck::str()
 {
-
-}*/
+    if(cont > 0)
+    {
+        char *str = (char *)malloc(sizeof(char)*cont);
+        *str = '\0';
+        
+        for(int i = 0; i < cont; i++)
+        {
+            char *aux;
+            *aux= _deck[i].getSuit();
+            strcat(str, aux);
+            *aux = _deck[i].getValue();
+            strcat(str, aux);
+            *aux = ' ';
+            strcat(str, aux);
+        }
+        
+        return str;
+    }
+    else
+        return NULL;
+}
 
 
 

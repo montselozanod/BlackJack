@@ -22,6 +22,8 @@ class Deck
         // Constructor
         Deck();
     
+        int cont;
+    
         // Otros Metodos
         char getSuit(int k);
         char getValue(int k);
