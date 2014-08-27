@@ -19,6 +19,11 @@ bool finJuego;
 void jugar(char opcion);
 void initJuego();
 
+void fin()
+{
+    cout<<"***************** FIN DE JUEGO!! ****************\n";
+}
+
 void deal()
 {
     deck->shuffle(); //barajear baraja
@@ -66,12 +71,6 @@ void hit()
         player->addCard(newcarta);
     }
     
-    if (player->getValue() > 21) {
-        cout<<"PERDISTE  " << "\n";
-        puntajeDealer += 1;
-        finJuego = true;
-    }
-    
     cout<<"Mano del player: "<<"\n";
     player->str();
     int manoPlayer = player->getValue();
@@ -81,6 +80,13 @@ void hit()
     dealer->str();
     int manoDealer = dealer->getValue();
     cout<<"Puntos en mano del dealer: "<< manoDealer<<"\n";
+    
+    if (player->getValue() > 21) {
+        cout<<"PERDISTE  " << "\n";
+        puntajeDealer += 1;
+        finJuego = true;
+        fin();
+    }
     
     //muestra mano del player y dealer
     //player.str();
@@ -96,6 +102,7 @@ void stand()
         cout<<"Jugador ya perdio!!! \n";
         puntajeDealer += 1;
         finJuego = true;
+        fin();
         return;
     }
     
@@ -124,25 +131,38 @@ void stand()
         cout<<"Mano de player: "<<player->getValue()<<" Mano dealer:"<<dealer->getValue()<<"\n";
     }
     finJuego = true;
+    fin();
 }
 
 void jugar(char opcion)
 {
     switch (opcion) {
-        case 'Q'  : finJuego = true; exit(0); break; //Quitar el juego
-        case 27   : finJuego = true; exit(0); break; //Quitar el juego
-        case 'D': cout<< "Nuevo Juego \n";
+        
+        case 'q':
+        case 'Q':
+        case 27 :
+            finJuego = true;
+            exit(0); break; //Quitar el juego
+            
+        case 'd':
+        case 'D':
+            cout<< "Nuevo Juego \n";
             initJuego();
             deal();
             break;
+            
+        case 'h':
         case 'H': //Hit (Dar una nueva carta a la mano del player)
             if(!finJuego)
                 hit();
             break;
+            
+        case 's':
         case 'S': //Stand (Dar cartas al dealer)
             if(!finJuego)
                 stand();
             break;
+            
         default:
             break;
     }
