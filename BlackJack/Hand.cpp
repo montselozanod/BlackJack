@@ -2,7 +2,7 @@
 //  Hand.cpp
 //  BlackJack
 //
-//  Created by Ariana Cisneros on 23/08/14.
+//  Created by Ariana Cisneros and Maria Montserrat Lozano on 23/08/14.
 //  Copyright (c) 2014 ITESM. All rights reserved.
 //
 
@@ -16,6 +16,13 @@ using namespace std;
 
 Hand:: Hand()
 {
+    cont = 0;
+    
+    for(int i = 0; i < 10; i++)
+    {
+        hand[i].setSuit('z');
+        hand[i].setValue('z');
+    }
 }
 
 char Hand::getSuit(int k)
@@ -31,8 +38,6 @@ char Hand::getValue(int k)
     return hand[k].getValue();
     
 }
-
-
 
 /*char * Hand::str()
  {

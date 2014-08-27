@@ -2,15 +2,20 @@
 //  main.cpp
 //  BlackJack
 //
-//  Created by Ariana Cisneros on 21/08/14.
+//  Created by Ariana Cisneros and Maria Montserrat Lozano on 21/08/14.
 //  Copyright (c) 2014 ITESM. All rights reserved.
 //
 #include <iostream>
 #include "Deck.h"
 #include "Hand.h"
+
 Deck *deck = new Deck(); //deck global
-Hand player; //mano del jugador global
-Hand dealer; //mano del dealer global
+Hand *player; //mano del jugador global
+Hand *dealer; //mano del dealer global
+int puntajeDealer;
+int puntajePlayer;
+int juegosJugados;
+
 void jugar(char opcion);
 
 void deal()
@@ -28,29 +33,22 @@ void deal()
     Card carta3 = deck->dealCard();
     Card carta4 = deck->dealCard();
     
-    
-    /*cout<<"Dealed Card Player: "<<carta1.getSuit()<<" "<<carta1.getValue()<<"\n \n";
-     cout<<"Dealed Card Player: "<<carta2.getSuit()<<" "<<carta2.getValue()<<"\n \n";
-     cout<<"Dealed Card Dealer: "<<carta3.getSuit()<<" "<<carta3.getValue()<<"\n \n";
-     cout<<"Dealed Card Dealer: "<<carta4.getSuit()<<" "<<carta4.getValue()<<"\n \n";*/
-    
     //Repartir 2 cartas a la mano del player y 2 al dealer
-    player.addCard(carta1); //carta1 del player
-    player.addCard(carta2); //carta2 del player
-    dealer.addCard(carta3); //carta3 del dealer
-    dealer.addCard(carta4); //carta4 del dealer
+    player->addCard(carta1); //carta1 del player
+    player->addCard(carta2); //carta2 del player
+    dealer->addCard(carta3); //carta3 del dealer
+    dealer->addCard(carta4); //carta4 del dealer
     
     //muestra mano del player y dealer
     cout<<"Mano del player: "<<"\n";
-    player.str();
-    int manoPlayer = player.getValue();
+    player->str();
+    int manoPlayer = player->getValue();
     cout<<"Puntos en mano del player: "<< manoPlayer<<"\n";
     
     cout<<"Mano del dealer: "<<"\n";
-    dealer.str();
-    int manoDealer = dealer.getValue();
+    dealer->str();
+    int manoDealer = dealer->getValue();
     cout<<"Puntos en mano del dealer: "<< manoDealer<<"\n";
-    
     
     //cout<<"Deck con las cartas eliminadas: "<<"\n";
     //muestra deck con las cartas eliminadas
@@ -62,23 +60,23 @@ void deal()
 
 void hit()
 {
-    if (player.getValue() <= 21) {
+    if (player->getValue() <= 21) {
         Card newcarta = deck->dealCard();
-        player.addCard(newcarta);
+        player->addCard(newcarta);
     }
     
-    if (player.getValue() > 21) {
+    if (player->getValue() > 21) {
         cout<<"PERDISTE  " << "\n";
     }
     
     cout<<"Mano del player: "<<"\n";
-    player.str();
-    int manoPlayer = player.getValue();
+    player->str();
+    int manoPlayer = player->getValue();
     cout<<"Puntos en mano del player: "<< manoPlayer<<"\n";
     
     cout<<"Mano del dealer: "<<"\n";
-    dealer.str();
-    int manoDealer = dealer.getValue();
+    dealer->str();
+    int manoDealer = dealer->getValue();
     cout<<"Puntos en mano del dealer: "<< manoDealer<<"\n";
     
     //muestra mano del player y dealer
@@ -89,31 +87,36 @@ void hit()
 void stand()
 {
     //indicar que jugador ya perdio
-    if(player.getValue() > 21)
+    if(player->getValue() > 21)
     {
         cout<<"Jugador ya perdio!!! \n";
+        puntajeDealer += 1;
         return;
     }
     
     //Ejecutar repetidamente dealer haasta que mano tenga valor de 17 o mas
-    while(dealer.getValue() < 17 && dealer.getValue() < player.getValue())
+    while(dealer->getValue() < 17 && dealer->getValue() < player->getValue())
     {
         Card carta = deck->dealCard();
-        dealer.addCard(carta);
-        cout<<"Puntos dealer: "<< dealer.getValue()<<"\n";
+        dealer->addCard(carta);
+        cout<<"Puntos dealer: "<< dealer->getValue()<<"\n";
     }
     
-    if (dealer.getValue() > 21)
+    if (dealer->getValue() > 21)
     {
+        puntajePlayer += 1;
         cout<<"Dealer se paso! Jugador Gana!!"<<"\n";
-    }else if(player.getValue() <= dealer.getValue())
+        
+    }else if(player->getValue() <= dealer->getValue())
     {
+        puntajeDealer += 1;
         cout<<"Dealer gana! Jugador Pierde \n";
-        cout<<"Mano de player: "<<player.getValue()<<" Mano dealer:"<<dealer.getValue()<<"\n";
+        cout<<"Mano de player: "<<player->getValue()<<" Mano dealer:"<<dealer->getValue()<<"\n";
     }else
     {
+        puntajePlayer += 1;
         cout<<"Jugador Gana!!! \n";
-        cout<<"Mano de player: "<<player.getValue()<<" Mano dealer:"<<dealer.getValue()<<"\n";
+        cout<<"Mano de player: "<<player->getValue()<<" Mano dealer:"<<dealer->getValue()<<"\n";
     }
     
 }
@@ -132,48 +135,40 @@ void jugar(char opcion)
         case 'S': //Stand (Dar cartas al dealer)
             stand();
             break;
-            
         default:
             break;
     }
     
 }
 
+void initJuego()
+{
+    deck = new Deck();
+    player = new Hand();
+    dealer = new Hand();
+    
+}
+
 int main(int argc, const char * argv[])
 {
-    int jugando = 0; // El player no esta jugando
+    puntajeDealer = 0;
+    puntajePlayer = 0;
     char opcion = 'D'; //por default para que entre al ciclo
     cout << "Bienvenido jugador:) " << endl;
     
     while (opcion != 'Q' ) {
         
-        jugando = player.getValue(); // Si es 0 es que no esta jugando, si es != significa que sí esta jugando
-        
         cout << "Selecciona una opción D-Deal H-Hit S-Stand Q-Quit" << endl;
         cin >> opcion;
-        if (jugando == 0){   // el player no está jugando
-            switch (opcion) {
-                case 'H' ://H o S
-                    cout << "Selecciona D-Deal ó Q-Quit" << endl;
-                    break;
-                case 'S' ://H o S
-                    cout << "Selecciona D-Deal ó Q-Quit" << endl;
-                    break;
-                    
-                default:
+            switch (opcion)
+            {
+                case 'D': cout<< "Nuevo Juego \n";
+                    initJuego();
                     jugar(opcion);
-            }
-            
-        } else{ //el player sí esta jugando
-            switch (opcion) {
-                case 'D' :// El jugador pierde el juego
-                    cout << "Perdiste el juego  " << endl;
                     break;
                 default:
                     jugar(opcion);
-            }
-            
-        }
+           }
         
     }
     
