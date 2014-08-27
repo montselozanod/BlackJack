@@ -14,9 +14,10 @@ Hand *player; //mano del jugador global
 Hand *dealer; //mano del dealer global
 int puntajeDealer;
 int puntajePlayer;
-int juegosJugados;
+bool finJuego;
 
 void jugar(char opcion);
+void initJuego();
 
 void deal()
 {
@@ -67,6 +68,8 @@ void hit()
     
     if (player->getValue() > 21) {
         cout<<"PERDISTE  " << "\n";
+        puntajeDealer += 1;
+        finJuego = true;
     }
     
     cout<<"Mano del player: "<<"\n";
@@ -86,11 +89,13 @@ void hit()
 
 void stand()
 {
+    
     //indicar que jugador ya perdio
     if(player->getValue() > 21)
     {
         cout<<"Jugador ya perdio!!! \n";
         puntajeDealer += 1;
+        finJuego = true;
         return;
     }
     
@@ -118,22 +123,25 @@ void stand()
         cout<<"Jugador Gana!!! \n";
         cout<<"Mano de player: "<<player->getValue()<<" Mano dealer:"<<dealer->getValue()<<"\n";
     }
-    
+    finJuego = true;
 }
 
 void jugar(char opcion)
 {
     switch (opcion) {
-        case 'Q'  : break; //Quitar el juego
-        case 27   : break; //Quitar el juego
-        case 'D': //Deal (barajear y repartir 2 cartas a cada quien)
+        case 'Q'  : finJuego = true; exit(0); break; //Quitar el juego
+        case 27   : finJuego = true; exit(0); break; //Quitar el juego
+        case 'D': cout<< "Nuevo Juego \n";
+            initJuego();
             deal();
             break;
         case 'H': //Hit (Dar una nueva carta a la mano del player)
-            hit();
+            if(!finJuego)
+                hit();
             break;
         case 'S': //Stand (Dar cartas al dealer)
-            stand();
+            if(!finJuego)
+                stand();
             break;
         default:
             break;
@@ -146,6 +154,7 @@ void initJuego()
     deck = new Deck();
     player = new Hand();
     dealer = new Hand();
+    finJuego = false;
     
 }
 
@@ -153,23 +162,15 @@ int main(int argc, const char * argv[])
 {
     puntajeDealer = 0;
     puntajePlayer = 0;
+    finJuego = true;
     char opcion = 'D'; //por default para que entre al ciclo
     cout << "Bienvenido jugador:) " << endl;
-    
+    //initJuego();
     while (opcion != 'Q' ) {
         
         cout << "Selecciona una opción D-Deal H-Hit S-Stand Q-Quit" << endl;
         cin >> opcion;
-            switch (opcion)
-            {
-                case 'D': cout<< "Nuevo Juego \n";
-                    initJuego();
-                    jugar(opcion);
-                    break;
-                default:
-                    jugar(opcion);
-           }
-        
+        jugar(opcion);
     }
     
     return 0;
