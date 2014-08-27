@@ -39,20 +39,34 @@ char Hand::getValue(int k)
     
 }
 
-/*char * Hand::str()
- {
- 
- char x[] = "";
- return x;
- 
- 
- }*/
+char * Hand::strp()
+{
+    if(cont > 0)
+    {
+        char *str = (char *)malloc(sizeof(char)*cont);
+        *str = '\0';
+        
+        for(int i = 0; i < cont; i++)
+        {
+            char *aux;
+            *aux= hand[i].getSuit();
+            strcat(str, aux);
+            *aux = hand[i].getValue();
+            strcat(str, aux);
+            *aux = ' ';
+            strcat(str, aux);
+        }
+        
+        return str;
+    }
+    else
+        return NULL;
+}
 
 void Hand::str()
 {
     for (int i = 0; i < cont; i++) {
         cout<< hand[i].getSuit() << " " << hand[i].getValue()<< "\n" ;
-        // cout<<"Dealed Card Player: "<<carta1.getSuit()<<" "<<carta1.getValue()<<"\n \n";
     }
     
 }

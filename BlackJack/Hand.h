@@ -21,7 +21,7 @@ class Hand
     
         char getSuit(int k); //Retorna el suit de la carta
         char getValue(int k);//retorna el valor de la carta k de
-        char * strm(); //retorna en todas las cartas de la mano
+        char * strp(); //retorna en todas las cartas de la mano
         void str();
         void addCard(Card card); //añade una carta a la mano de cartas
         int getValue();//retorna el valor total de puntos de la mano
