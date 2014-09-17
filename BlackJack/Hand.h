@@ -1,4 +1,6 @@
-//
+// Matriculas:
+// Montserrat Lozano Dieck A01088686
+// Ariana Cisneros A01138381
 //  Hand.h
 //  BlackJack
 //
@@ -25,7 +27,7 @@ class Hand
         void str();
         void addCard(Card card); //añade una carta a la mano de cartas
         int getValue();//retorna el valor total de puntos de la mano
-        void draw(int x, int y);//dibuja todas las cartas desde la posición x,y, dependiendo de la cantidad de cartas
+        void draw(int x, int y, bool dealer, bool finRonda);//dibuja todas las cartas desde la posición x,y, dependiendo de la cantidad de cartas
     
     private:
         Card hand[10]=

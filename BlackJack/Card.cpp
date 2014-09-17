@@ -1,4 +1,6 @@
-//
+// Matriculas:
+// Montserrat Lozano Dieck A01088686
+// Ariana Cisneros A01138381
 //  Card.cpp
 //  BlackJack
 //
